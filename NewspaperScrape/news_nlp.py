@@ -1,8 +1,20 @@
 # Description: This program performs sentiment analysis on news articles using TextBlob.
-
+import nltk
+nltk.download('punkt')
 from textblob import TextBlob
 
 
+news_summary = """A woman died from treatment delays after a hospital in Germany hit by a cyberattack was forced to turn away emergency patients.
+This is a small sample of the toll from ransomware attacks, in which hackers break into computer networks and freeze the digital information until the targeted organization or city pays for its release.
+Victims have two bad choices: Give in to extortion and hope the criminals didn’t do too much damage, or refuse and risk the hackers releasing or deleting essential information.
+I spoke to Charles Carmakal, an executive with the cybersecurity response company FireEye Mandiant, about the root causes and fixes for ransomware attacks.
+What are the root causes of ransomware?"""
+
+
+def find_sentiment(text):
+    news = TextBlob(text)
+    for sentence in news.sentences:
+        print(str(sentence))
 # Method Purpose: Given a news summary, extracts polarity and subjectivity metrics, returning both in a readable format.
 def find_sentiment(news_story):
     news = TextBlob(news_story)
@@ -79,3 +91,5 @@ def calculate_sentiment(sentiment, type):
         return sentiment_category
     else:
         print("Invalid Input.")
+
+find_sentiment(news_summary)
